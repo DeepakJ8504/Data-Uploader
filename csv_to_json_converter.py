@@ -14,7 +14,9 @@ headers = {
 }
 BATCH_SIZE = 3000
 
-def convert(file_path: str, stream: str = "val"):
+def convert(file: str, stream: str = "val"):
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(base_dir, file)
     data = []
 
     with open(file_path, mode='r', encoding='utf-8-sig') as csvfile:
