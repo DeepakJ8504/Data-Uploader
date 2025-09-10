@@ -1,13 +1,13 @@
-import os
 import csv
+import os
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import requests
 
-from validator import is_valid_customer_data, data_type
+from validator import is_valid_customer_data, data_type, uri_type
 
-api_url = "https://cromaapi-612730900229.asia-south1.run.app/upload/"
+api_url: str = "https://cromaapi-612730900229.asia-south1.run.app/upload/"
 
 headers = {
     'Content-Type': 'application/json',
@@ -36,6 +36,8 @@ def chunked(iterable):
         yield iterable[i:i + BATCH_SIZE]
 
 def multi_thread_convert(data: list):
+    global api_url
+    api_url = api_url + uri_type(data[0])
     chunk_data = chunked(data)
 
     results = []

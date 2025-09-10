@@ -22,6 +22,34 @@ imp_keys = [
 
 ids = set()
 
+def uri_type(obj):
+    if obj["_"] == "[Account]":
+        return "customers"
+    elif obj["_"] == "[Order]":
+        return "orders"
+    elif obj["_"] == "[OrderItem]":
+        return "order-items"
+    elif obj["_"] == "[Case]":
+        return "ticket?type=case"
+    elif obj["_"] == "[Call_Summary__c]":
+        return "ticket?type=call-summary"
+    elif obj["_"] == "[Customer_Files__c]":
+        return "ticket?type=file"
+    elif obj["_"] == "[Task]":
+        return "ticket?type=task"
+    elif obj["_"] == "[WorkOrder]":
+        return "ticket?type=work-order"
+    elif obj["_"] == "[Invoice__c]":
+        return "invoice-data"
+    elif obj["_"] == "[Refund_Status__c]":
+        return "refund-data"
+    elif obj["_"] == "[Voucher_Detail__c]":
+        return "ticket?type=egc"
+    elif obj["_"] == "[Contact]":
+        return "contacts"
+    else:
+        return None
+
 def data_type(obj):
     if obj["_"] == "[Account]":
         imp_keys.extend(customer_keys)
